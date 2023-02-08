@@ -1,5 +1,5 @@
 import {renderUserTransactions} from './user-interface.js';
-import {findTransferUser} from './login.js';
+import {findTransferUser} from './account.js';
 
 const inputTransferTo = document.querySelector('.form__input--to');
 const inputTransferAmount = document.querySelector('.form__input--amount');
@@ -33,8 +33,8 @@ btnTransfer.addEventListener('click', (evt) => {
   inputTransferAmount.value = '';
 });
 
-const transferMoney = (fromAcc) => {
+const rewriteAcc = (fromAcc) => {
   currentAcc = fromAcc;
 };
 
-export {transferMoney};
+export {rewriteAcc};

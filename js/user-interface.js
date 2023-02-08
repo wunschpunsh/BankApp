@@ -1,7 +1,7 @@
-import {transferMoney} from './transfer.js';
+import {rewriteAcc} from './transfer.js';
 import {renderUserTransactions} from './transaction.js';
 import {createGreeting} from './util.js';
-import {singIn} from './login.js';
+import {deleteAcc, singIn} from './account.js';
 import {createRenderSetting} from './transaction.js';
 
 // User entry
@@ -23,7 +23,8 @@ const renderPersonalAccount = () => {
       createRenderSetting();
       renderUserTransactions(userAccount);
       createGreeting(userAccount.userName, welcome);
-      transferMoney(userAccount);
+      rewriteAcc(userAccount);
+      deleteAcc(userAccount);
     } else {
       alert('Неправильные данные');
     }
