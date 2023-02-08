@@ -39,21 +39,21 @@ btnClose.addEventListener('click', (evt) => {
   evt.preventDefault();
   const {login, pin} = currentAcc;
   const userLogin = inputCloseUsername.value;
-  const userPin = inputClosePin.value;
-  if (userLogin === login && Number(userPin) === pin) {
+  const userPin = +inputClosePin.value;
+  if (userLogin === login && userPin === pin) {
     const deleteUserIndex = findIndexDeleteUser(userLogin, userPin);
     accounts.splice(deleteUserIndex, 1);
     containerApp.style.opacity = '0';
     welcome.textContent = 'Войдите в свой аккаунт';
+    inputCloseUsername.value = '';
+    inputClosePin.value = '';
   } else {
     alert('Вы ввели неверные данные');
   }
-  userLogin.value = '';
-  userPin.value = '';
 });
 
-const deleteAcc = (fromAcc) => {
-  currentAcc = fromAcc;
+const deleteAcc = (acc) => {
+  currentAcc = acc;
 };
 
 export {singIn, findTransferUser, deleteAcc};

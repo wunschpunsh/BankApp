@@ -3,6 +3,7 @@ import {renderUserTransactions} from './transaction.js';
 import {createGreeting} from './util.js';
 import {deleteAcc, singIn} from './account.js';
 import {createRenderSetting} from './transaction.js';
+import {requestLoan} from './loan.js';
 
 // User entry
 const inputLoginUsername = document.querySelector('.login__input--user');
@@ -25,6 +26,7 @@ const renderPersonalAccount = () => {
       createGreeting(userAccount.userName, welcome);
       rewriteAcc(userAccount);
       deleteAcc(userAccount);
+      requestLoan(userAccount);
     } else {
       alert('Неправильные данные');
     }
