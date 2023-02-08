@@ -15,26 +15,25 @@ const summarizeBalance = (param, data, percent) => {
       summ = '0$';
       break;
     case 'All':
-      summ = data.reduce((acc, item) => acc + item, 0) + '$';
+      summ = data.reduce((acc, item) => acc + item, 0);
       break;
     case 'In':
-      summ =
-        data.filter((item) => item > 0).reduce((acc, item) => acc + item, 0) +
-        '$';
+      summ = data
+        .filter((item) => item > 0)
+        .reduce((acc, item) => acc + item, 0);
       break;
     case 'Out':
-      summ =
-        data.filter((item) => item < 0).reduce((acc, item) => acc + item, 0) +
-        '$';
+      summ = data
+        .filter((item) => item < 0)
+        .reduce((acc, item) => acc + item, 0);
       break;
     case 'Percent':
-      summ =
-        Math.trunc(
-          data
-            .filter((item) => item > 0)
-            .map((item) => (item * percent) / 100)
-            .reduce((acc, item) => acc + item, 0)
-        ) + '$';
+      summ = Math.trunc(
+        data
+          .filter((item) => item > 0)
+          .map((item) => (item * percent) / 100)
+          .reduce((acc, item) => acc + item, 0)
+      );
   }
   return summ;
 };
