@@ -20,6 +20,8 @@ btnLoan.addEventListener('click', (evt) => {
     transactions.push(inputUserLoan);
     renderUserTransactions(currentAcc);
     inputLoanAmount.value = '';
+  } else {
+    alert('Мы не можем выдать вам займ');
   }
 });
 
