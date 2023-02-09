@@ -1,5 +1,6 @@
 import {inputLoginUsername, inputLoginPin} from './user-interface.js';
 import {summarizeBalance} from './util.js';
+
 // Transactions
 const containerTransactions = document.querySelector('.transactions');
 
@@ -36,10 +37,14 @@ const renderBalanceProperties = (transData, percent) => {
 
 // Rendering user interface
 
-const renderUserTransactions = (userAcc) => {
+const renderUserTransactions = (userAcc, sort) => {
   const {transactions, interest} = userAcc;
 
-  transactions.forEach((item, index) => {
+  const viewTransactions = sort
+    ? transactions.slice().sort((a, b) => a - b)
+    : transactions;
+
+  viewTransactions.forEach((item, index) => {
     const transaction = `
     <div class="transactions__row">
       <div class="transactions__type transactions__type--${
