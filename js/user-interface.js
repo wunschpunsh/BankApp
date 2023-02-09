@@ -1,7 +1,7 @@
 import {rewriteAcc} from './transfer.js';
 import {renderUserTransactions} from './transaction.js';
 import {createGreeting} from './util.js';
-import {deleteAcc, singIn} from './account.js';
+import {deleteAcc, signIn} from './account.js';
 import {createRenderSetting} from './transaction.js';
 import {requestLoan} from './loan.js';
 import {sortTransactions} from './sort.js';
@@ -19,7 +19,7 @@ const renderPersonalAccount = () => {
     evt.preventDefault();
     const login = inputLoginUsername.value;
     const pin = +inputLoginPin.value;
-    const userAccount = singIn(login, pin);
+    const userAccount = signIn(login, pin);
 
     if (userAccount) {
       createRenderSetting();
@@ -35,9 +35,4 @@ const renderPersonalAccount = () => {
   });
 };
 
-export {
-  renderPersonalAccount,
-  renderUserTransactions,
-  inputLoginUsername,
-  inputLoginPin,
-};
+export {renderPersonalAccount, renderUserTransactions};

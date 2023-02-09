@@ -1,4 +1,4 @@
-import {inputLoginUsername, inputLoginPin} from './user-interface.js';
+// import {inputLoginUsername, inputLoginPin} from './user-interface.js';
 import {summarizeBalance} from './util.js';
 
 // Transactions
@@ -12,6 +12,9 @@ const totalBalance = document.querySelector('.balance__value');
 const totalSumIn = document.querySelector('.total__value--in');
 const totalSumOut = document.querySelector('.total__value--out');
 const totalSumInterest = document.querySelector('.total__value--interest');
+
+const inputLoginUsername = document.querySelector('.login__input--user');
+const inputLoginPin = document.querySelector('.login__input--pin');
 
 // Default setting for rendering user interface
 

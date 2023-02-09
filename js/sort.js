@@ -9,7 +9,6 @@ btnSort.addEventListener('click', (evt) => {
   evt.preventDefault();
 
   containerTransactions.innerHTML = '';
-  console.log(sortState);
 
   renderUserTransactions(currentAcc, !sortState);
   sortState = sortState ? false : true;

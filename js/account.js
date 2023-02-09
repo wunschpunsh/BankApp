@@ -15,7 +15,7 @@ const addLogin = (data) => {
   });
 };
 
-const singIn = (login, pin) => {
+const signIn = (login, pin) => {
   return accounts.find((item) => item.login === login && item.pin === pin);
 };
 
@@ -56,4 +56,4 @@ const deleteAcc = (acc) => {
   currentAcc = acc;
 };
 
-export {singIn, findTransferUser, deleteAcc};
+export {signIn, findTransferUser, deleteAcc};
