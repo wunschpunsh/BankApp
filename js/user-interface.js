@@ -1,7 +1,7 @@
 import {rewriteAcc} from './transfer.js';
 import {renderUserTransactions} from './transaction.js';
 import {createGreeting} from './util.js';
-import {deleteAcc, signIn} from './account.js';
+import {deleteAcc, signIn, createLogoutTimer} from './account.js';
 import {createRenderSetting} from './transaction.js';
 import {requestLoan} from './loan.js';
 import {sortTransactions} from './sort.js';
@@ -11,6 +11,8 @@ const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
 const btnLogin = document.querySelector('.login__btn');
 const welcome = document.querySelector('.welcome');
+
+let currentLogoutTimer;
 
 // Balance transactions
 
@@ -29,6 +31,13 @@ const renderPersonalAccount = () => {
       deleteAcc(userAccount);
       requestLoan(userAccount);
       sortTransactions(userAccount);
+      if (currentLogoutTimer) clearInterval(currentLogoutTimer);
+
+      // Update timer
+      document.documentElement.addEventListener('mousemove', () => {
+        clearInterval(currentLogoutTimer);
+        currentLogoutTimer = createLogoutTimer();
+      });
     } else {
       alert('Неправильные данные');
     }

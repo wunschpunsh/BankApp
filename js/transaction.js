@@ -1,5 +1,5 @@
-// import {inputLoginUsername, inputLoginPin} from './user-interface.js';
 import {summarizeBalance} from './util.js';
+import {getDate} from './date.js';
 
 // Transactions
 const containerTransactions = document.querySelector('.transactions');
@@ -28,26 +28,31 @@ const createRenderSetting = () => {
 // // Rendering balance and transactions value
 
 const renderBalanceProperties = (transData, percent) => {
-  totalBalance.textContent = `${summarizeBalance('All', transData)}$`;
-  totalSumIn.textContent = `${summarizeBalance('In', transData)}$`;
-  totalSumOut.textContent = `${summarizeBalance('Out', transData)}$`;
+  totalBalance.textContent = `${summarizeBalance('All', transData).toFixed(
+    2
+  )}$`;
+  totalSumIn.textContent = `${summarizeBalance('In', transData).toFixed(2)}$`;
+  totalSumOut.textContent = `${summarizeBalance('Out', transData).toFixed(2)}$`;
   totalSumInterest.textContent = `${summarizeBalance(
     'Percent',
     transData,
     percent
-  )}$`;
+  ).toFixed(2)}$`;
 };
 
 // Rendering user interface
 
 const renderUserTransactions = (userAcc, sort) => {
-  const {transactions, interest} = userAcc;
+  const {transactions, interest, transactionsDates} = userAcc;
 
   const viewTransactions = sort
     ? transactions.slice().sort((a, b) => a - b)
     : transactions;
 
   viewTransactions.forEach((item, index) => {
+    const {day, month, year} = getDate(transactionsDates[index]);
+    const renderDate = getDate(transactionsDates[index]);
+
     const transaction = `
     <div class="transactions__row">
       <div class="transactions__type transactions__type--${
@@ -55,8 +60,9 @@ const renderUserTransactions = (userAcc, sort) => {
       }">
         ${index + 1} ${item > 0 ? 'депозит' : 'вывод средств'}
       </div>
-      <div class="transactions__date">2 дня назад</div>
-      <div class="transactions__value">${item}$</div>
+      <div class="transactions__date">${renderDate}
+      </div>
+      <div class="transactions__value">${item.toFixed(2)}$</div>
     </div>`;
 
     containerTransactions.insertAdjacentHTML('afterbegin', transaction);
